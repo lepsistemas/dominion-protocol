@@ -2,29 +2,25 @@ using System;
 using System.Linq;
 using DominionProtocol.Domain.Model;
 using DominionProtocol.Domain.Repository;
-using DominionProtocol.Domain.UseCases;
-using DominionProtocol.Infra.Repository;
 using DominionProtocol.Domain.Service;
 using System.Threading.Tasks;
+using DominionProtocol.Domain.UseCase;
 
 namespace DominionProtocol.Presentation.Presenter;
 
 public class StartGameMenuPresenter
 {
     private readonly IStartGameMenu _view;
-    private readonly StartMatchUseCase _useCase;
+    private readonly IStartMatchUseCase _useCase;
     private readonly GenerateIntroService _introService;
     private readonly INationRepository _nationRepository;
-    private readonly ICardRepository _cardRepository;
 
-    public StartGameMenuPresenter(IStartGameMenu view, GenerateIntroService introService)
+    public StartGameMenuPresenter(IStartGameMenu view, GenerateIntroService introService, INationRepository nationRepository, IStartMatchUseCase useCase)
     {
         _view = view;
         _introService = introService;
-
-        _nationRepository = new InMemoryNationRepository();
-        _cardRepository = new InMemoryCardRepository();
-        _useCase = new StartMatchUseCase(_nationRepository, _cardRepository);
+        _nationRepository = nationRepository;
+        _useCase = useCase;
     }
 
     public async Task LoadSummary()

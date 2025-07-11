@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using DominionProtocol.Domain.Model;
 using DominionProtocol.Domain.Service;
 
-namespace DominionProtocol.Domain.UseCases;
+namespace DominionProtocol.Domain.UseCase;
 
 public class ApplyCardEffectUseCase
 {

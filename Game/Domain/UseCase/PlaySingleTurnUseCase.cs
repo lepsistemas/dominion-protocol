@@ -2,8 +2,9 @@ using System.Threading.Tasks;
 using System.Linq;
 using DominionProtocol.Domain.Model;
 using DominionProtocol.Domain.Service;
-using DominionProtocol.Domain.UseCases;
 using System;
+
+namespace DominionProtocol.Domain.UseCase;
 
 public class PlaySingleTurnUseCase
 {

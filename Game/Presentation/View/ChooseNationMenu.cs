@@ -9,7 +9,7 @@ public partial class ChooseNationMenu : MarginContainer, IChooseNationMenu
 
     public override async void _Ready()
     {
-        _presenter = new ChooseNationPresenter(this);
+        _presenter = PresenterFactory.CreateChooseNationPresenter(this);
         await _presenter.LoadNationOptions();
     }
 

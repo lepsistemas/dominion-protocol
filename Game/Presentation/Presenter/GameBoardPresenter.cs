@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DominionProtocol.Domain.Model;
 using DominionProtocol.Domain.Service;
-using DominionProtocol.Domain.UseCases;
+using DominionProtocol.Domain.UseCase;
 using System;
 
 namespace DominionProtocol.Presentation.Presenter;

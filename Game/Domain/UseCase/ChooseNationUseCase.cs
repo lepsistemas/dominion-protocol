@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 using DominionProtocol.Domain.Model;
 using DominionProtocol.Domain.Repository;
 
-namespace DominionProtocol.Domain.UseCases;
+namespace DominionProtocol.Domain.UseCase;
 
-public class ChooseNationUseCase
+public class ChooseNationUseCase : IChooseNationUseCase
 {
     private readonly INationRepository _nationRepository;
 

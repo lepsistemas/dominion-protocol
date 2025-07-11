@@ -10,9 +10,7 @@ public partial class StartGameMenu : MarginContainer, IStartGameMenu
 
     public override async void _Ready()
     {
-        var gateway = new LocalIntroGateway();
-        var introService = new GenerateIntroService(gateway);
-        _presenter = new StartGameMenuPresenter(this, introService);
+        _presenter = PresenterFactory.CreateStartGameMenuPresenter(this);
         await _presenter.LoadSummary();
 
         GetNode<Button>("ContentWrapper/MainContainer/StartContainer/StartButton").Pressed += OnStartMatchPressed;

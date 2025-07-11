@@ -6,9 +6,9 @@ using DominionProtocol.Domain.Model;
 using DominionProtocol.Domain.Repository;
 using System.Threading.Tasks;
 
-namespace DominionProtocol.Domain.UseCases;
+namespace DominionProtocol.Domain.UseCase;
 
-public class StartMatchUseCase
+public class StartMatchUseCase : IStartMatchUseCase
 {
     private readonly INationRepository _nationRepository;
     private readonly ICardRepository _cardRepository;

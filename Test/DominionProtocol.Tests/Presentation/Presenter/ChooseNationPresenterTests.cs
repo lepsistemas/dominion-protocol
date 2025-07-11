@@ -1,11 +1,7 @@
-using Xunit;
 using Moq;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using DominionProtocol.Presentation.Presenter;
 using DominionProtocol.Domain.Model;
-using DominionProtocol.Presentation;
-using DominionProtocol.Infra.Repository;
+using DominionProtocol.Domain.UseCase;
 
 namespace DominionProtocol.Tests.Presentation.Presenter;
 
@@ -18,13 +14,31 @@ public class ChooseNationPresenterTests
         GameSettings.SetPeriod(HistoricalPeriod.Medieval);
 
         var viewMock = new Mock<IChooseNationMenu>();
-        var presenter = new ChooseNationPresenter(viewMock.Object);
+        var useCaseMock = new Mock<IChooseNationUseCase>();
+
+        var nationList = new List<Nation>
+        {
+            new Nation(
+                name: "Testland",
+                description: "Test desc",
+                startingStrength: 10,
+                color: "Red",
+                availablePeriods: new List<HistoricalPeriod> { HistoricalPeriod.Medieval },
+                attributes: new NationAttributes(5, 5, 5, 5)
+            )
+        };
+
+        useCaseMock
+            .Setup(u => u.GetAvailableNations(HistoricalPeriod.Medieval))
+            .ReturnsAsync(nationList);
+
+        var presenter = new ChooseNationPresenter(viewMock.Object, useCaseMock.Object);
 
         // Act
         await presenter.LoadNationOptions();
 
         // Assert
-        viewMock.Verify(v => v.DisplayNationOptions(It.Is<List<Nation>>(list => list.Count > 0)), Times.Once);
+        viewMock.Verify(v => v.DisplayNationOptions(It.Is<List<Nation>>(list => list.SequenceEqual(nationList))), Times.Once);
     }
 
     [Fact]
@@ -32,7 +46,9 @@ public class ChooseNationPresenterTests
     {
         // Arrange
         var viewMock = new Mock<IChooseNationMenu>();
-        var presenter = new ChooseNationPresenter(viewMock.Object);
+        var useCaseMock = new Mock<IChooseNationUseCase>();
+
+        var presenter = new ChooseNationPresenter(viewMock.Object, useCaseMock.Object);
 
         var nation = new Nation(
             name: "Testland",

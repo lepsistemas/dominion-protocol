@@ -1,4 +1,3 @@
-using Xunit;
 using Moq;
 using DominionProtocol.Presentation.Presenter;
 using DominionProtocol.Domain.Model;
