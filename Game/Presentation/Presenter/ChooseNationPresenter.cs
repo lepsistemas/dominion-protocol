@@ -1,21 +1,19 @@
-using System;
 using DominionProtocol.Domain.Model;
-using DominionProtocol.Domain.UseCases;
-using DominionProtocol.Infra.Repository;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using DominionProtocol.Domain.UseCase;
 
 namespace DominionProtocol.Presentation.Presenter;
 
 public class ChooseNationPresenter
 {
     private readonly IChooseNationMenu _view;
-    private readonly ChooseNationUseCase _useCase;
+    private readonly IChooseNationUseCase _useCase;
 
-    public ChooseNationPresenter(IChooseNationMenu view)
+    public ChooseNationPresenter(IChooseNationMenu view, IChooseNationUseCase useCase)
     {
         _view = view;
-        _useCase = new ChooseNationUseCase(new InMemoryNationRepository());
+        _useCase = useCase;
     }
 
     public async Task LoadNationOptions()
