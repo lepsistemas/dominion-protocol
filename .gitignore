@@ -1,0 +1,10 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+# Test
+bin/
+obj/
+.godot/mono/temp/
+Test/**/bin/
+Test/**/obj/

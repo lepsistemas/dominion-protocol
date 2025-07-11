@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://cc03nfexamcax"]
+
+[ext_resource type="Script" uid="uid://1k2hgn5paeic" path="res://Game/Presentation/View/ChooseNationMenu.cs" id="1_irkyb"]
+[ext_resource type="Texture2D" uid="uid://bxmhlm3d3l2fg" path="res://Assets/Images/Screens/Background.png" id="2_aohwa"]
+
+[node name="ChooseNationMenu" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_irkyb")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_aohwa")
+expand_mode = 2
+
+[node name="ContentWrapper" type="VBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="TitleContainer" type="VBoxContainer" parent="ContentWrapper"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 2
+
+[node name="TitleLabel" type="Label" parent="ContentWrapper/TitleContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Choose your nation:"
+horizontal_alignment = 1
+
+[node name="MainContainer" type="VBoxContainer" parent="ContentWrapper"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="NationListContainer" type="HBoxContainer" parent="ContentWrapper/MainContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+alignment = 1
+
+[node name="FooterContainer" type="HBoxContainer" parent="ContentWrapper"]
+layout_mode = 2
+size_flags_vertical = 3

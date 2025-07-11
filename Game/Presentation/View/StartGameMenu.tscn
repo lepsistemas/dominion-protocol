@@ -1,0 +1,125 @@
+[gd_scene load_steps=4 format=3 uid="uid://bekicdpvu1lf8"]
+
+[ext_resource type="Script" uid="uid://c0fdp05qnolap" path="res://Game/Presentation/View/StartGameMenu.cs" id="1_1pgkl"]
+[ext_resource type="Texture2D" uid="uid://bxmhlm3d3l2fg" path="res://Assets/Images/Screens/Background.png" id="2_rn4hi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rn4hi"]
+bg_color = Color(0, 0, 0, 0.705882)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+expand_margin_left = 25.0
+expand_margin_top = 25.0
+expand_margin_right = 25.0
+expand_margin_bottom = 25.0
+
+[node name="StartGameMenu" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1pgkl")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_rn4hi")
+expand_mode = 2
+
+[node name="ContentWrapper" type="VBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="TitleContainer" type="VBoxContainer" parent="ContentWrapper"]
+layout_mode = 2
+
+[node name="SummaryContainer" type="VBoxContainer" parent="ContentWrapper/TitleContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="PeriodLabel" type="Label" parent="ContentWrapper/TitleContainer/SummaryContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "Modern"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerNationLabel" type="Label" parent="ContentWrapper/TitleContainer/SummaryContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "Brazil"
+horizontal_alignment = 1
+
+[node name="OpponentsLabel" type="Label" parent="ContentWrapper/TitleContainer/SummaryContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+horizontal_alignment = 1
+
+[node name="ContextContainer" type="HBoxContainer" parent="ContentWrapper/TitleContainer/SummaryContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="EndContextContainer" type="HBoxContainer" parent="ContentWrapper/TitleContainer/SummaryContainer/ContextContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="CenterContextContainer" type="HBoxContainer" parent="ContentWrapper/TitleContainer/SummaryContainer/ContextContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="ContextWrapper" type="MarginContainer" parent="ContentWrapper/TitleContainer/SummaryContainer/ContextContainer/CenterContextContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="ContextPanel" type="PanelContainer" parent="ContentWrapper/TitleContainer/SummaryContainer/ContextContainer/CenterContextContainer/ContextWrapper"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rn4hi")
+
+[node name="ContextLabel" type="RichTextLabel" parent="ContentWrapper/TitleContainer/SummaryContainer/ContextContainer/CenterContextContainer/ContextWrapper/ContextPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "As a dominant force in your era, your nation holds unmatched strength in war and diplomacy.
+
+However, tensions rise as rivals stake their claims on nearby lands. Strategy will be your greatest weapon.
+
+The world watches as you prepare to take your first step toward conquest."
+fit_content = true
+
+[node name="BeginContextContainer" type="HBoxContainer" parent="ContentWrapper/TitleContainer/SummaryContainer/ContextContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="MainContainer" type="VBoxContainer" parent="ContentWrapper"]
+layout_mode = 2
+
+[node name="StartContainer" type="HBoxContainer" parent="ContentWrapper/MainContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+alignment = 1
+
+[node name="StartButton" type="Button" parent="ContentWrapper/MainContainer/StartContainer"]
+layout_mode = 2
+text = "START!"
+
+[node name="FooterContainer" type="HBoxContainer" parent="ContentWrapper"]
+layout_mode = 2

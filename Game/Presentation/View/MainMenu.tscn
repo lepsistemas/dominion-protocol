@@ -1,0 +1,74 @@
+[gd_scene load_steps=3 format=3 uid="uid://cu7156vrelwfm"]
+
+[ext_resource type="Script" uid="uid://cc2hod3vrrev" path="res://Game/Presentation/View/MainMenu.cs" id="1_ib3qv"]
+[ext_resource type="Texture2D" uid="uid://bxmhlm3d3l2fg" path="res://Assets/Images/Screens/Background.png" id="2_kis1i"]
+
+[node name="MainMenu" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ib3qv")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_kis1i")
+expand_mode = 2
+
+[node name="ContentWrapper" type="VBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="TitleContainer" type="VBoxContainer" parent="ContentWrapper"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 2
+
+[node name="TitleLabel" type="Label" parent="ContentWrapper/TitleContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Dominion Protocol"
+horizontal_alignment = 1
+
+[node name="ActionLabel" type="Label" parent="ContentWrapper/TitleContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Select your era:"
+horizontal_alignment = 1
+
+[node name="MainContainer" type="VBoxContainer" parent="ContentWrapper"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PeriodButtonsContainer" type="HBoxContainer" parent="ContentWrapper/MainContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="AncientButton" type="Button" parent="ContentWrapper/MainContainer/PeriodButtonsContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 5
+text = "Ancient"
+
+[node name="MedievalButton" type="Button" parent="ContentWrapper/MainContainer/PeriodButtonsContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 5
+text = "Medieval"
+
+[node name="ModernButton" type="Button" parent="ContentWrapper/MainContainer/PeriodButtonsContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 5
+text = "Modern"
+
+[node name="FutureButton" type="Button" parent="ContentWrapper/MainContainer/PeriodButtonsContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 5
+text = "Future"
+
+[node name="FooterContainer" type="HBoxContainer" parent="ContentWrapper"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1

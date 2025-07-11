@@ -1,0 +1,128 @@
+[gd_scene load_steps=7 format=3 uid="uid://cpq41wbd0h6fu"]
+
+[ext_resource type="Script" uid="uid://bbfxkqxyjiwos" path="res://Game/Presentation/View/GameBoard.cs" id="1_kngp8"]
+[ext_resource type="Texture2D" uid="uid://bxmhlm3d3l2fg" path="res://Assets/Images/Screens/Background.png" id="2_u5s52"]
+[ext_resource type="PackedScene" uid="uid://tmtbtsypl6q4" path="res://Game/Presentation/View/PlayerHand.tscn" id="3_oywp6"]
+[ext_resource type="Texture2D" uid="uid://85pao7txvxso" path="res://Assets/Images/Actions/RollDice.png" id="4_7kivh"]
+[ext_resource type="Texture2D" uid="uid://ds6rbjpvup4a7" path="res://Assets/Images/Actions/UseCard.png" id="5_pbb3f"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u5s52"]
+bg_color = Color(0, 0, 0, 0.705882)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+expand_margin_left = 25.0
+expand_margin_top = 25.0
+expand_margin_right = 25.0
+expand_margin_bottom = 25.0
+
+[node name="GameBoard" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kngp8")
+
+[node name="Background" type="TextureRect" parent="."]
+z_index = -1
+layout_mode = 2
+texture = ExtResource("2_u5s52")
+expand_mode = 3
+
+[node name="ContentWrapper" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="QuickMessageLabel" type="Label" parent="ContentWrapper"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_vertical = 1
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MainLayout" type="VBoxContainer" parent="ContentWrapper"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TopRow" type="HBoxContainer" parent="ContentWrapper/MainLayout"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="StatsPanel" type="VBoxContainer" parent="ContentWrapper/MainLayout/TopRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PlayerInfoLabel" type="RichTextLabel" parent="ContentWrapper/MainLayout/TopRow/StatsPanel"]
+layout_mode = 2
+bbcode_enabled = true
+fit_content = true
+
+[node name="MilitaryLabel" type="Label" parent="ContentWrapper/MainLayout/TopRow/StatsPanel"]
+layout_mode = 2
+
+[node name="TechnologyLabel" type="Label" parent="ContentWrapper/MainLayout/TopRow/StatsPanel"]
+layout_mode = 2
+
+[node name="ResourcesLabel" type="Label" parent="ContentWrapper/MainLayout/TopRow/StatsPanel"]
+layout_mode = 2
+
+[node name="DiplomacyLabel" type="Label" parent="ContentWrapper/MainLayout/TopRow/StatsPanel"]
+layout_mode = 2
+
+[node name="EnemyPanel" type="VBoxContainer" parent="ContentWrapper/MainLayout/TopRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BottomRow" type="HBoxContainer" parent="ContentWrapper/MainLayout"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="HandWrapper" type="MarginContainer" parent="ContentWrapper/MainLayout/BottomRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="HandControl" type="PanelContainer" parent="ContentWrapper/MainLayout/BottomRow/HandWrapper"]
+custom_minimum_size = Vector2(500, 120)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_u5s52")
+
+[node name="HandPanel" parent="ContentWrapper/MainLayout/BottomRow/HandWrapper/HandControl" instance=ExtResource("3_oywp6")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ActionWrapper" type="MarginContainer" parent="ContentWrapper/MainLayout/BottomRow"]
+layout_mode = 2
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="ActionPanel" type="HBoxContainer" parent="ContentWrapper/MainLayout/BottomRow/ActionWrapper"]
+layout_mode = 2
+size_flags_vertical = 8
+alignment = 1
+
+[node name="RollDiceButton" type="Button" parent="ContentWrapper/MainLayout/BottomRow/ActionWrapper/ActionPanel"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+size_flags_horizontal = 3
+icon = ExtResource("4_7kivh")
+icon_alignment = 1
+expand_icon = true
+
+[node name="UseCardButton" type="Button" parent="ContentWrapper/MainLayout/BottomRow/ActionWrapper/ActionPanel"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+size_flags_horizontal = 3
+icon = ExtResource("5_pbb3f")
+icon_alignment = 1
+expand_icon = true

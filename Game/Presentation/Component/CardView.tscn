@@ -1,0 +1,88 @@
+[gd_scene load_steps=4 format=3 uid="uid://d18og67oon6y8"]
+
+[ext_resource type="Script" uid="uid://cfjpi84qixa8h" path="res://Game/Presentation/Component/CardView.cs" id="1_kgjqf"]
+[ext_resource type="Texture2D" uid="uid://c0jk2r28cdq81" path="res://Assets/Images/Cards/Background_Front.png" id="2_kgjqf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kgjqf"]
+
+[node name="CardView" type="PanelContainer"]
+custom_minimum_size = Vector2(240, 360)
+offset_right = 240.0
+offset_bottom = 360.0
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxEmpty_kgjqf")
+script = ExtResource("1_kgjqf")
+
+[node name="Background" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(240, 360)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("2_kgjqf")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Content" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Layout" type="VBoxContainer" parent="Content"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="ClassContainer" type="MarginContainer" parent="Content/Layout"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 35
+theme_override_constants/margin_right = 5
+
+[node name="ClassLabel" type="Label" parent="Content/Layout/ClassContainer"]
+z_index = 2
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.625597, 0.625597, 0.625597, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NameContainer" type="MarginContainer" parent="Content/Layout"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="NameLabel" type="Label" parent="Content/Layout/NameContainer"]
+z_index = 2
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.627451, 0.627451, 0.627451, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="DescriptionContainer" type="MarginContainer" parent="Content/Layout"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="DescriptionLabel" type="Label" parent="Content/Layout/DescriptionContainer"]
+z_index = 2
+custom_minimum_size = Vector2(100, 150)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.344076, 0.344076, 0.344076, 1)
+theme_override_font_sizes/font_size = 16
+vertical_alignment = 2
+autowrap_mode = 3
+justification_flags = 171

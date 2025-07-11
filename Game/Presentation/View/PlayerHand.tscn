@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://tmtbtsypl6q4"]
+
+[ext_resource type="Script" uid="uid://7pekv85486xl" path="res://Game/Presentation/View/PlayerHand.cs" id="1_ualqo"]
+
+[node name="HandPanel" type="HBoxContainer"]
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+alignment = 1
+script = ExtResource("1_ualqo")
