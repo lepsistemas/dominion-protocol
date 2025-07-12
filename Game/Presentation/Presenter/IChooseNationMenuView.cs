@@ -3,7 +3,7 @@ using DominionProtocol.Domain.Model;
 
 namespace DominionProtocol.Presentation.Presenter;
 
-public interface IChooseNationMenu
+public interface IChooseNationMenuView
 {
     void DisplayNationOptions(List<Nation> nations);
     void NavigateToStartGame();

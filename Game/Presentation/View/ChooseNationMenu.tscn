@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cc03nfexamcax"]
 
-[ext_resource type="Script" uid="uid://1k2hgn5paeic" path="res://Game/Presentation/View/ChooseNationMenu.cs" id="1_irkyb"]
+[ext_resource type="Script" uid="uid://bx4x5cn85ducl" path="res://Game/Presentation/View/ChooseNationMenuView.cs" id="1_aohwa"]
 [ext_resource type="Texture2D" uid="uid://bxmhlm3d3l2fg" path="res://Assets/Images/Screens/Background.png" id="2_aohwa"]
 
 [node name="ChooseNationMenu" type="MarginContainer"]
@@ -9,7 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_irkyb")
+script = ExtResource("1_aohwa")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 2

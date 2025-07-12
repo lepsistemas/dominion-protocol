@@ -12,7 +12,7 @@ public static class PresenterFactory
         return new MainMenuPresenter(view);
     }
 
-    public static ChooseNationPresenter CreateChooseNationPresenter(IChooseNationMenu view)
+    public static ChooseNationPresenter CreateChooseNationPresenter(IChooseNationMenuView view)
     {
         var nationRepo = new InMemoryNationRepository();
         var useCase = new ChooseNationUseCase(nationRepo);

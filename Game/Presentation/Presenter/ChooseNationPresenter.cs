@@ -7,10 +7,10 @@ namespace DominionProtocol.Presentation.Presenter;
 
 public class ChooseNationPresenter
 {
-    private readonly IChooseNationMenu _view;
+    private readonly IChooseNationMenuView _view;
     private readonly IChooseNationUseCase _useCase;
 
-    public ChooseNationPresenter(IChooseNationMenu view, IChooseNationUseCase useCase)
+    public ChooseNationPresenter(IChooseNationMenuView view, IChooseNationUseCase useCase)
     {
         _view = view;
         _useCase = useCase;
