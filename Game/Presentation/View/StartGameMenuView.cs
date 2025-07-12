@@ -1,10 +1,8 @@
 using Godot;
 using System.Collections.Generic;
 using DominionProtocol.Presentation.Presenter;
-using DominionProtocol.Infra.Gateway;
-using DominionProtocol.Domain.Service;
 
-public partial class StartGameMenu : MarginContainer, IStartGameMenu
+public partial class StartGameMenuView : MarginContainer, IStartGameMenuView
 {
     private StartGameMenuPresenter _presenter = default!;
 
