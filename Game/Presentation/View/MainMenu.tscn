@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cu7156vrelwfm"]
 
-[ext_resource type="Script" uid="uid://cc2hod3vrrev" path="res://Game/Presentation/View/MainMenu.cs" id="1_ib3qv"]
+[ext_resource type="Script" uid="uid://8y11oqolftbd" path="res://Game/Presentation/View/MainMenuView.cs" id="1_kis1i"]
 [ext_resource type="Texture2D" uid="uid://bxmhlm3d3l2fg" path="res://Assets/Images/Screens/Background.png" id="2_kis1i"]
 
 [node name="MainMenu" type="MarginContainer"]
@@ -9,7 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_ib3qv")
+script = ExtResource("1_kis1i")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 2

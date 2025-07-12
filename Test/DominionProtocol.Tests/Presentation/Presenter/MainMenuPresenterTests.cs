@@ -10,7 +10,7 @@ public class MainMenuPresenterTests
     public void ShouldSetSelectedPeriodAndNavigateWhenPeriodIsValid()
     {
         // Arrange
-        var viewMock = new Mock<IMainMenu>();
+        var viewMock = new Mock<IMainMenuView>();
         var presenter = new MainMenuPresenter(viewMock.Object);
 
         // Act
@@ -25,7 +25,7 @@ public class MainMenuPresenterTests
     public void ShouldNotNavigateWhenPeriodIsInvalid()
     {
         // Arrange
-        var viewMock = new Mock<IMainMenu>();
+        var viewMock = new Mock<IMainMenuView>();
         var presenter = new MainMenuPresenter(viewMock.Object);
 
         // Act

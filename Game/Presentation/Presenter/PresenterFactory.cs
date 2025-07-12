@@ -7,7 +7,7 @@ namespace DominionProtocol.Presentation.Presenter;
 
 public static class PresenterFactory
 {
-    public static MainMenuPresenter CreateMainMenuPresenter(IMainMenu view)
+    public static MainMenuPresenter CreateMainMenuPresenter(IMainMenuView view)
     {
         return new MainMenuPresenter(view);
     }

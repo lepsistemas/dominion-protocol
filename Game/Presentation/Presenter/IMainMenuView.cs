@@ -1,6 +1,6 @@
 namespace DominionProtocol.Presentation.Presenter;
 
-public interface IMainMenu
+public interface IMainMenuView
 {
     void NavigateToChooseNation();
 }
