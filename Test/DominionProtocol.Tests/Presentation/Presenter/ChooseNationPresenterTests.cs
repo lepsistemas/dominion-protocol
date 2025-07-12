@@ -13,7 +13,7 @@ public class ChooseNationPresenterTests
         // Arrange
         GameSettings.SetPeriod(HistoricalPeriod.Medieval);
 
-        var viewMock = new Mock<IChooseNationMenu>();
+        var viewMock = new Mock<IChooseNationMenuView>();
         var useCaseMock = new Mock<IChooseNationUseCase>();
 
         var nationList = new List<Nation>
@@ -45,7 +45,7 @@ public class ChooseNationPresenterTests
     public void ShouldSetSelectedNationAndNavigateToStartGame()
     {
         // Arrange
-        var viewMock = new Mock<IChooseNationMenu>();
+        var viewMock = new Mock<IChooseNationMenuView>();
         var useCaseMock = new Mock<IChooseNationUseCase>();
 
         var presenter = new ChooseNationPresenter(viewMock.Object, useCaseMock.Object);
