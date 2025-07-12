@@ -1,7 +1,7 @@
 using Godot;
 using DominionProtocol.Presentation.Presenter;
 
-public partial class MainMenu : MarginContainer, IMainMenu
+public partial class MainMenuView : MarginContainer, IMainMenuView
 {
     private MainMenuPresenter _presenter = default!;
 

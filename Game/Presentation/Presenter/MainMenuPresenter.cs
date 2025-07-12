@@ -5,9 +5,9 @@ namespace DominionProtocol.Presentation.Presenter;
 
 public class MainMenuPresenter
 {
-    private readonly IMainMenu _view;
+    private readonly IMainMenuView _view;
 
-    public MainMenuPresenter(IMainMenu view)
+    public MainMenuPresenter(IMainMenuView view)
     {
         _view = view;
     }
