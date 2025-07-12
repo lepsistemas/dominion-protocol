@@ -14,7 +14,7 @@ public class StartGameMenuPresenterTests
     public async Task ShouldDisplaySummaryAndNarrativeWhenLoadingSummary()
     {
         // Arrange
-        var viewMock = new Mock<IStartGameMenu>();
+        var viewMock = new Mock<IStartGameMenuView>();
         var nationRepoMock = new Mock<INationRepository>();
         var useCaseMock = new Mock<IStartMatchUseCase>();
 
@@ -68,7 +68,7 @@ public class StartGameMenuPresenterTests
     public async Task ShouldStartGameAndNavigateToGameBoard()
     {
         // Arrange
-        var viewMock = new Mock<IStartGameMenu>();
+        var viewMock = new Mock<IStartGameMenuView>();
         var nationRepoMock = new Mock<INationRepository>();
         var useCaseMock = new Mock<IStartMatchUseCase>();
 

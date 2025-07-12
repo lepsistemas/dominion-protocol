@@ -19,7 +19,7 @@ public static class PresenterFactory
         return new ChooseNationPresenter(view, useCase);
     }
 
-    public static StartGameMenuPresenter CreateStartGameMenuPresenter(IStartGameMenu view)
+    public static StartGameMenuPresenter CreateStartGameMenuPresenter(IStartGameMenuView view)
     {
         var gateway = new LocalIntroGateway();
         var introService = new GenerateIntroService(gateway);

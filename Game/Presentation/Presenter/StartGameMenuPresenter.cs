@@ -10,12 +10,12 @@ namespace DominionProtocol.Presentation.Presenter;
 
 public class StartGameMenuPresenter
 {
-    private readonly IStartGameMenu _view;
+    private readonly IStartGameMenuView _view;
     private readonly IStartMatchUseCase _useCase;
     private readonly GenerateIntroService _introService;
     private readonly INationRepository _nationRepository;
 
-    public StartGameMenuPresenter(IStartGameMenu view, GenerateIntroService introService, INationRepository nationRepository, IStartMatchUseCase useCase)
+    public StartGameMenuPresenter(IStartGameMenuView view, GenerateIntroService introService, INationRepository nationRepository, IStartMatchUseCase useCase)
     {
         _view = view;
         _introService = introService;

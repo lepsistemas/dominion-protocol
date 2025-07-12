@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bekicdpvu1lf8"]
 
-[ext_resource type="Script" uid="uid://c0fdp05qnolap" path="res://Game/Presentation/View/StartGameMenu.cs" id="1_1pgkl"]
+[ext_resource type="Script" uid="uid://cqhxke0f0k0fn" path="res://Game/Presentation/View/StartGameMenuView.cs" id="1_rn4hi"]
 [ext_resource type="Texture2D" uid="uid://bxmhlm3d3l2fg" path="res://Assets/Images/Screens/Background.png" id="2_rn4hi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rn4hi"]
@@ -20,7 +20,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_1pgkl")
+script = ExtResource("1_rn4hi")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 2
