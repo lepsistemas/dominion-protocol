@@ -9,6 +9,8 @@ public class BoundariesTest
             .InCurrentDomain()
             .That()
             .DoNotResideInNamespace("DominionProtocol.Presentation.View")
+            .And()
+            .DoNotResideInNamespace("GodotPlugins")
             .ShouldNot()
             .HaveDependencyOn("Godot")
             .GetResult();
