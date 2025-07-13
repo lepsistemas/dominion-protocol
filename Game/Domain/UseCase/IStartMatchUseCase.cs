@@ -5,5 +5,5 @@ namespace DominionProtocol.Domain.UseCase;
 
 public interface IStartMatchUseCase
 {
-    Task<Game> Start(HistoricalPeriod period, Nation humanNation);
+    Task<StartMatchResult> Start();
 }

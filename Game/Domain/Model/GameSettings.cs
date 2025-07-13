@@ -1,10 +1,23 @@
 namespace DominionProtocol.Domain.Model;
 
-public static class GameSettings
+public class GameSettings
 {
-    public static HistoricalPeriod SelectedPeriod { get; private set; }
-    public static Nation SelectedNation { get; private set; } = default!;
+    public HistoricalPeriod? SelectedPeriod { get; }
+    public Nation? SelectedNation { get; }
 
-    public static void SetPeriod(HistoricalPeriod period) => SelectedPeriod = period;
-    public static void SetNation(Nation nation) => SelectedNation = nation;
+    public GameSettings()
+    {
+    }
+
+    public GameSettings(HistoricalPeriod? selectedPeriod, Nation? selectedNation)
+    {
+        SelectedPeriod = selectedPeriod;
+        SelectedNation = selectedNation;
+    }
+
+    public GameSettings WithPeriod(HistoricalPeriod newPeriod) =>
+        new GameSettings(newPeriod, SelectedNation!);
+
+    public GameSettings WithNation(Nation newNation) =>
+        new GameSettings(SelectedPeriod!, newNation);
 }

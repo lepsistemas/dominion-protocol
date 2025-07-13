@@ -27,9 +27,9 @@ public partial class StartGameMenuView : MarginContainer, IStartGameMenuView
         GetNode<RichTextLabel>("ContentWrapper/TitleContainer/SummaryContainer/ContextContainer/CenterContextContainer/ContextWrapper/ContextPanel/ContextLabel").Text = text;
     }
 
-    private async void OnStartMatchPressed()
+    private void OnStartMatchPressed()
     {
-        await _presenter.StartMatch();
+        _presenter.StartMatch();
     }
 
     public void NavigateToGameBoard()

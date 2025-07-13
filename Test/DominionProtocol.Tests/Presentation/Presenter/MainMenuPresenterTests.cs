@@ -1,6 +1,7 @@
 using Moq;
 using DominionProtocol.Presentation.Presenter;
 using DominionProtocol.Domain.Model;
+using DominionProtocol.Domain.UseCase;
 
 namespace DominionProtocol.Tests.Presentation.Presenter;
 
@@ -11,13 +12,14 @@ public class MainMenuPresenterTests
     {
         // Arrange
         var viewMock = new Mock<IMainMenuView>();
-        var presenter = new MainMenuPresenter(viewMock.Object);
+        var useCaseMock = new Mock<ISetPeriodUseCase>();
+        var presenter = new MainMenuPresenter(viewMock.Object, useCaseMock.Object);
 
         // Act
         presenter.SelectPeriod("Medieval");
 
         // Assert
-        Assert.Equal(HistoricalPeriod.Medieval, GameSettings.SelectedPeriod);
+        useCaseMock.Verify(u => u.Execute(HistoricalPeriod.Medieval), Times.Once);
         viewMock.Verify(v => v.NavigateToChooseNation(), Times.Once);
     }
 
@@ -26,12 +28,14 @@ public class MainMenuPresenterTests
     {
         // Arrange
         var viewMock = new Mock<IMainMenuView>();
-        var presenter = new MainMenuPresenter(viewMock.Object);
+        var useCaseMock = new Mock<ISetPeriodUseCase>();
+        var presenter = new MainMenuPresenter(viewMock.Object, useCaseMock.Object);
 
         // Act
         presenter.SelectPeriod("Jurassic");
 
         // Assert
+        useCaseMock.Verify(u => u.Execute(It.IsAny<HistoricalPeriod>()), Times.Never);
         viewMock.Verify(v => v.NavigateToChooseNation(), Times.Never);
     }
 }

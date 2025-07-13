@@ -2,8 +2,6 @@ using Moq;
 using DominionProtocol.Presentation.Presenter;
 using DominionProtocol.Domain.Model;
 using DominionProtocol.Domain.Service;
-using DominionProtocol.Domain.Gateway;
-using DominionProtocol.Domain.Repository;
 using DominionProtocol.Domain.UseCase;
 
 namespace DominionProtocol.Tests.Presentation.Presenter;
@@ -15,41 +13,23 @@ public class StartGameMenuPresenterTests
     {
         // Arrange
         var viewMock = new Mock<IStartGameMenuView>();
-        var nationRepoMock = new Mock<INationRepository>();
         var useCaseMock = new Mock<IStartMatchUseCase>();
 
-        var introGatewayMock = new Mock<IIntroGateway>();
-        introGatewayMock
-            .Setup(g => g.GenerateIntroText(It.IsAny<string>()))
-            .ReturnsAsync(new IntroNarrative("Intro text"));
-
-        var introService = new GenerateIntroService(introGatewayMock.Object);
-
-        var presenter = new StartGameMenuPresenter(
-            viewMock.Object,
-            introService,
-            nationRepoMock.Object,
-            useCaseMock.Object
+        var result = new StartMatchResult(
+            game: new Game(new List<Player>()),
+            periodName: "Medieval",
+            playerNation: new Nation("Testland", "", 10, "Red", new List<HistoricalPeriod>(), new NationAttributes(1, 1, 1, 1)),
+            opponents: new List<Nation>
+            {
+                new Nation("Opponia", "", 10, "Blue", new List<HistoricalPeriod>(), new NationAttributes(1, 1, 1, 1)),
+                new Nation("Rivalia", "", 10, "Green", new List<HistoricalPeriod>(), new NationAttributes(1, 1, 1, 1))
+            },
+            contextNarrative: "Intro text"
         );
 
-        var selectedNation = new Nation(
-            name: "Testland",
-            description: "Test desc",
-            startingStrength: 10,
-            color: "Red",
-            availablePeriods: new List<HistoricalPeriod> { HistoricalPeriod.Medieval },
-            attributes: new NationAttributes(5, 5, 5, 5)
-        );
+        useCaseMock.Setup(u => u.Start()).ReturnsAsync(result);
 
-        var opponent1 = new Nation("Opponia", "desc", 10, "Blue", new List<HistoricalPeriod> { HistoricalPeriod.Medieval }, new NationAttributes(3,3,3,3));
-        var opponent2 = new Nation("Rivalia", "desc", 10, "Green", new List<HistoricalPeriod> { HistoricalPeriod.Medieval }, new NationAttributes(3,3,3,3));
-
-        nationRepoMock
-            .Setup(r => r.GetAvailableForPeriod(HistoricalPeriod.Medieval))
-            .ReturnsAsync(new List<Nation> { selectedNation, opponent1, opponent2 });
-
-        GameSettings.SetPeriod(HistoricalPeriod.Medieval);
-        GameSettings.SetNation(selectedNation);
+        var presenter = new StartGameMenuPresenter(viewMock.Object, useCaseMock.Object);
 
         // Act
         await presenter.LoadSummary();
@@ -65,44 +45,19 @@ public class StartGameMenuPresenterTests
     }
 
     [Fact]
-    public async Task ShouldStartGameAndNavigateToGameBoard()
+    public void ShouldStartGameAndNavigateToGameBoard()
     {
         // Arrange
         var viewMock = new Mock<IStartGameMenuView>();
-        var nationRepoMock = new Mock<INationRepository>();
         var useCaseMock = new Mock<IStartMatchUseCase>();
 
-        var introGatewayMock = new Mock<IIntroGateway>();
-        var introService = new GenerateIntroService(introGatewayMock.Object);
-
-        var presenter = new StartGameMenuPresenter(
-            viewMock.Object,
-            introService,
-            nationRepoMock.Object,
-            useCaseMock.Object
-        );
-
-        var selectedNation = new Nation(
-            name: "Testland",
-            description: "Test desc",
-            startingStrength: 10,
-            color: "Red",
-            availablePeriods: new List<HistoricalPeriod> { HistoricalPeriod.Medieval },
-            attributes: new NationAttributes(5, 5, 5, 5)
-        );
-
-        GameSettings.SetPeriod(HistoricalPeriod.Medieval);
-        GameSettings.SetNation(selectedNation);
-
-        useCaseMock
-            .Setup(u => u.Start(It.IsAny<HistoricalPeriod>(), It.IsAny<Nation>()))
-            .ReturnsAsync(new Game(new List<Player>()));
+        var presenter = new StartGameMenuPresenter(viewMock.Object, useCaseMock.Object);
 
         // Act
-        await presenter.StartMatch();
+        presenter.StartMatch();
 
         // Assert
-        Assert.NotNull(GameSession.Current);
         viewMock.Verify(v => v.NavigateToGameBoard(), Times.Once);
     }
+
 }

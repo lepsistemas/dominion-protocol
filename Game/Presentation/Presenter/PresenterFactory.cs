@@ -9,13 +9,13 @@ public static class PresenterFactory
 {
     public static MainMenuPresenter CreateMainMenuPresenter(IMainMenuView view)
     {
-        return new MainMenuPresenter(view);
+        var useCase = new SetPeriodUseCase(RepositoryLocator.GameSettings);
+        return new MainMenuPresenter(view, useCase);
     }
 
     public static ChooseNationPresenter CreateChooseNationPresenter(IChooseNationMenuView view)
     {
-        var nationRepo = new InMemoryNationRepository();
-        var useCase = new ChooseNationUseCase(nationRepo);
+        var useCase = new ChooseNationUseCase(RepositoryLocator.Nations, RepositoryLocator.GameSettings);
         return new ChooseNationPresenter(view, useCase);
     }
 
@@ -24,10 +24,7 @@ public static class PresenterFactory
         var gateway = new LocalIntroGateway();
         var introService = new GenerateIntroService(gateway);
 
-        var nationRepo = new InMemoryNationRepository();
-        var cardRepo = new InMemoryCardRepository();
-        var useCase = new StartMatchUseCase(nationRepo, cardRepo);
-
-        return new StartGameMenuPresenter(view, introService, nationRepo, useCase);
+        var useCase = new StartMatchUseCase(RepositoryLocator.Nations, RepositoryLocator.Cards, RepositoryLocator.GameSettings, introService);
+        return new StartGameMenuPresenter(view, useCase);
     }
 }
