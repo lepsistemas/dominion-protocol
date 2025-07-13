@@ -1,6 +1,8 @@
 using Godot;
 using System.Threading.Tasks;
 
+namespace DominionProtocol.Presentation.View;
+
 public partial class TurnStartCutScene : CanvasLayer
 {
     private Label _messageLabel = default!;

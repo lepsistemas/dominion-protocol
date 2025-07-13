@@ -1,4 +1,3 @@
-using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,8 +59,6 @@ public class StartMatchUseCase : IStartMatchUseCase
             var hand = deck.OrderBy(_ => rng.Next()).Take(5).ToList();
             foreach (var card in hand)
                 player.AddCard(card);
-
-            GD.Print($"{player.Name} hand: {string.Join(", ", player.Hand.Select(c => c.Name))}");
         }
 
         var intro = await _introService.Generate(humanNation, aiNations);

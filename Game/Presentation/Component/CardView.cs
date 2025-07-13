@@ -2,6 +2,8 @@ using Godot;
 using DominionProtocol.Domain.Model;
 using System;
 
+namespace DominionProtocol.Presentation.View;
+
 public partial class CardView : PanelContainer
 {
     private const float HoverScale = 1.2f;
