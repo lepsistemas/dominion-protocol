@@ -11,8 +11,6 @@ public class ChooseNationPresenterTests
     public async Task ShouldDisplayAvailableNationsWhenLoadingNationOptions()
     {
         // Arrange
-        GameSettings.SetPeriod(HistoricalPeriod.Medieval);
-
         var viewMock = new Mock<IChooseNationMenuView>();
         var useCaseMock = new Mock<IChooseNationUseCase>();
 
@@ -29,7 +27,7 @@ public class ChooseNationPresenterTests
         };
 
         useCaseMock
-            .Setup(u => u.GetAvailableNations(HistoricalPeriod.Medieval))
+            .Setup(u => u.GetAvailableNations())
             .ReturnsAsync(nationList);
 
         var presenter = new ChooseNationPresenter(viewMock.Object, useCaseMock.Object);
@@ -47,7 +45,6 @@ public class ChooseNationPresenterTests
         // Arrange
         var viewMock = new Mock<IChooseNationMenuView>();
         var useCaseMock = new Mock<IChooseNationUseCase>();
-
         var presenter = new ChooseNationPresenter(viewMock.Object, useCaseMock.Object);
 
         var nation = new Nation(
@@ -63,7 +60,7 @@ public class ChooseNationPresenterTests
         presenter.SelectNation(nation);
 
         // Assert
-        Assert.Equal(nation, GameSettings.SelectedNation);
+        useCaseMock.Verify(u => u.SelectNation(nation), Times.Once);
         viewMock.Verify(v => v.NavigateToStartGame(), Times.Once);
     }
 }

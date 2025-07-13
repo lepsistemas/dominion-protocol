@@ -18,14 +18,13 @@ public class ChooseNationPresenter
 
     public async Task LoadNationOptions()
     {
-        var selectedEra = GameSettings.SelectedPeriod;
-        List<Nation> nations = await _useCase.GetAvailableNations(selectedEra);
+        List<Nation> nations = await _useCase.GetAvailableNations();
         _view.DisplayNationOptions(nations);
     }
 
     public void SelectNation(Nation nation)
     {
-        GameSettings.SetNation(nation);
+        _useCase.SelectNation(nation);
         _view.NavigateToStartGame();
     }
 }

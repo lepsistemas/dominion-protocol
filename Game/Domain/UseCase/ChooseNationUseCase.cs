@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using DominionProtocol.Domain.Model;
@@ -8,14 +9,31 @@ namespace DominionProtocol.Domain.UseCase;
 public class ChooseNationUseCase : IChooseNationUseCase
 {
     private readonly INationRepository _nationRepository;
+    private readonly IGameSettingsRepository _settingsRepository;
 
-    public ChooseNationUseCase(INationRepository nationRepository)
+    public ChooseNationUseCase(INationRepository nationRepository, IGameSettingsRepository settingsRepository)
     {
         _nationRepository = nationRepository;
+        _settingsRepository = settingsRepository;
     }
 
-    public async Task<List<Nation>> GetAvailableNations(HistoricalPeriod period)
+    public async Task<List<Nation>> GetAvailableNations()
     {
-        return await _nationRepository.GetAvailableForPeriod(period);
+        var current = _settingsRepository.Load();
+        if (current == null)
+            throw new InvalidOperationException("Game settings not initialized.");
+
+        if (current.SelectedPeriod == null)
+            throw new InvalidOperationException("Period not selected.");
+            
+        return await _nationRepository.GetAvailableForPeriod(current.SelectedPeriod.Value);
+    }
+
+    public void SelectNation(Nation nation)
+    {
+        var current = _settingsRepository.Load();
+        if (current == null)
+            throw new InvalidOperationException("Game settings not initialized.");
+        _settingsRepository.Save(current.WithNation(nation));
     }
 }

@@ -10,7 +10,7 @@ public partial class MainMenuView : MarginContainer, IMainMenuView
         DisplayServer.WindowSetMode(DisplayServer.WindowMode.Fullscreen);
         DisplayServer.WindowSetFlag(DisplayServer.WindowFlags.Borderless, true);
         
-        _presenter = new MainMenuPresenter(this);
+        _presenter = PresenterFactory.CreateMainMenuPresenter(this);
 
         var container = GetNode<HBoxContainer>("ContentWrapper/MainContainer/PeriodButtonsContainer");
         container.GetNode<Button>("AncientButton").Pressed += () => _presenter.SelectPeriod("Ancient");
