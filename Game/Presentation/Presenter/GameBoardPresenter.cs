@@ -1,4 +1,3 @@
-using Godot;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
@@ -94,7 +93,6 @@ public class GameBoardPresenter
         }
         catch (Exception ex)
         {
-            GD.PrintErr("Erro inesperado ao executar turno: " + ex);
             _view.ShowQuickMessage("Ocorreu um erro. Tente novamente.");
         }
     }
