@@ -1,6 +1,8 @@
 using Godot;
 using DominionProtocol.Presentation.Presenter;
 
+namespace DominionProtocol.Presentation.View;
+
 public partial class MainMenuView : MarginContainer, IMainMenuView
 {
     private MainMenuPresenter _presenter = default!;
@@ -9,7 +11,7 @@ public partial class MainMenuView : MarginContainer, IMainMenuView
     {
         DisplayServer.WindowSetMode(DisplayServer.WindowMode.Fullscreen);
         DisplayServer.WindowSetFlag(DisplayServer.WindowFlags.Borderless, true);
-        
+
         _presenter = PresenterFactory.CreateMainMenuPresenter(this);
 
         var container = GetNode<HBoxContainer>("ContentWrapper/MainContainer/PeriodButtonsContainer");

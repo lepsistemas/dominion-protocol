@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using DominionProtocol.Presentation.Presenter;
 using DominionProtocol.Domain.Model;
 
+namespace DominionProtocol.Presentation.View;
+
 public partial class ChooseNationMenuView : MarginContainer, IChooseNationMenuView
 {
     private ChooseNationPresenter _presenter = default!;

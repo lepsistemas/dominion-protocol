@@ -4,6 +4,8 @@ using DominionProtocol.Domain.Model;
 using System.Linq;
 using System;
 
+namespace DominionProtocol.Presentation.View;
+
 public partial class PlayerHand : HBoxContainer
 {
     private readonly List<CardView> _cardViews = new();

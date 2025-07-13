@@ -6,6 +6,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System;
 
+namespace DominionProtocol.Presentation.View;
+
 public partial class GameBoard : MarginContainer, IGameBoard
 {
     private GameBoardPresenter _presenter = default!;
