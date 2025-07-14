@@ -9,7 +9,7 @@ public static class PresenterFactory
 {
     public static MainMenuPresenter CreateMainMenuPresenter(IMainMenuView view)
     {
-        var useCase = new SetPeriodUseCase(RepositoryLocator.GameSettings);
+        var useCase = new ChooseHistoricalPeriodUseCase(RepositoryLocator.GameSettings);
         return new MainMenuPresenter(view, useCase);
     }
 

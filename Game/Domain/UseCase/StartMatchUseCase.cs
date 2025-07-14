@@ -31,10 +31,10 @@ public class StartMatchUseCase : IStartMatchUseCase
         if (settings == null)
             throw new InvalidOperationException("Game settings not initialized.");
 
-        if (settings.SelectedPeriod is not HistoricalPeriod period)
+        if (settings.Period is not HistoricalPeriod period)
             throw new InvalidOperationException("Period undefined.");
 
-        if (settings.SelectedNation is not Nation humanNation)
+        if (settings.Nation is not Nation humanNation)
             throw new InvalidOperationException("Nation undefined.");
 
         var allNations = await _nationRepository.GetAvailableForPeriod(period);

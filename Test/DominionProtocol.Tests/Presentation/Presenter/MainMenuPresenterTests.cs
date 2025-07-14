@@ -12,7 +12,7 @@ public class MainMenuPresenterTests
     {
         // Arrange
         var viewMock = new Mock<IMainMenuView>();
-        var useCaseMock = new Mock<ISetPeriodUseCase>();
+        var useCaseMock = new Mock<IChooseHistoricalPeriodUseCase>();
         var presenter = new MainMenuPresenter(viewMock.Object, useCaseMock.Object);
 
         // Act
@@ -28,7 +28,7 @@ public class MainMenuPresenterTests
     {
         // Arrange
         var viewMock = new Mock<IMainMenuView>();
-        var useCaseMock = new Mock<ISetPeriodUseCase>();
+        var useCaseMock = new Mock<IChooseHistoricalPeriodUseCase>();
         var presenter = new MainMenuPresenter(viewMock.Object, useCaseMock.Object);
 
         // Act

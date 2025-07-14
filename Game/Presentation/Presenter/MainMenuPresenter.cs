@@ -7,9 +7,9 @@ namespace DominionProtocol.Presentation.Presenter;
 public class MainMenuPresenter
 {
     private readonly IMainMenuView _view;
-    private readonly ISetPeriodUseCase _useCase;
+    private readonly IChooseHistoricalPeriodUseCase _useCase;
 
-    public MainMenuPresenter(IMainMenuView view, ISetPeriodUseCase useCase)
+    public MainMenuPresenter(IMainMenuView view, IChooseHistoricalPeriodUseCase useCase)
     {
         _view = view;
         _useCase = useCase;
