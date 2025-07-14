@@ -8,7 +8,7 @@ using System;
 
 namespace DominionProtocol.Presentation.View;
 
-public partial class GameBoard : MarginContainer, IGameBoard
+public partial class GameBoardView : MarginContainer, IGameBoardView
 {
     private GameBoardPresenter _presenter = default!;
     public Card? SelectedCard { get; private set; }
@@ -22,7 +22,7 @@ public partial class GameBoard : MarginContainer, IGameBoard
 
     public override void _Ready()
     {
-        _presenter = new GameBoardPresenter(this);
+        _presenter = PresenterFactory.CreateGameBoardPresenter(this);
         _presenter.Load();
 
         _rollDiceButton = GetNode<Button>("ContentWrapper/MainLayout/BottomRow/ActionWrapper/ActionPanel/RollDiceButton");

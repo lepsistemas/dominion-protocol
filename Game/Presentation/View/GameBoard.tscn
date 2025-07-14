@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cpq41wbd0h6fu"]
 
-[ext_resource type="Script" uid="uid://bbfxkqxyjiwos" path="res://Game/Presentation/View/GameBoard.cs" id="1_kngp8"]
+[ext_resource type="Script" uid="uid://h0w4rbscv8bm" path="res://Game/Presentation/View/GameBoardView.cs" id="1_pbb3f"]
 [ext_resource type="Texture2D" uid="uid://bxmhlm3d3l2fg" path="res://Assets/Images/Screens/Background.png" id="2_u5s52"]
 [ext_resource type="PackedScene" uid="uid://tmtbtsypl6q4" path="res://Game/Presentation/View/PlayerHand.tscn" id="3_oywp6"]
 [ext_resource type="Texture2D" uid="uid://85pao7txvxso" path="res://Assets/Images/Actions/RollDice.png" id="4_7kivh"]
@@ -23,7 +23,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_kngp8")
+script = ExtResource("1_pbb3f")
 
 [node name="Background" type="TextureRect" parent="."]
 z_index = -1

@@ -2,9 +2,9 @@ using System;
 
 namespace DominionProtocol.Domain.Service;
 
-public class RandomDiceRollService
+public class RandomDiceRollService : IDiceRollService
 {
     private readonly Random _rng = new();
 
-    public int RollDice(int sides = 6) => _rng.Next(1, sides + 1);
+    public int Roll(int sides) => _rng.Next(1, sides + 1);
 }
