@@ -3,16 +3,16 @@ using DominionProtocol.Domain.Repository;
 
 namespace DominionProtocol.Domain.UseCase;
 
-public class SetPeriodUseCase : ISetPeriodUseCase
+public class ChooseHistoricalPeriodUseCase : IChooseHistoricalPeriodUseCase 
 {
     private readonly IGameSettingsRepository _repository;
 
-    public SetPeriodUseCase(IGameSettingsRepository repository)
+    public ChooseHistoricalPeriodUseCase(IGameSettingsRepository repository)
     {
         _repository = repository;
     }
 
-    public void Execute(HistoricalPeriod period)
+    public GameSettings Execute(HistoricalPeriod period)
     {
         var current = _repository.Load();
         if (current == null)
@@ -21,5 +21,6 @@ public class SetPeriodUseCase : ISetPeriodUseCase
         }
         var updated = current.WithPeriod(period);
         _repository.Save(updated);
+        return updated;
     }
 }

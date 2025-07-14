@@ -2,22 +2,22 @@ namespace DominionProtocol.Domain.Model;
 
 public class GameSettings
 {
-    public HistoricalPeriod? SelectedPeriod { get; }
-    public Nation? SelectedNation { get; }
+    public HistoricalPeriod? Period { get; }
+    public Nation? Nation { get; }
 
     public GameSettings()
     {
     }
 
-    public GameSettings(HistoricalPeriod? selectedPeriod, Nation? selectedNation)
+    public GameSettings(HistoricalPeriod? period, Nation? nation)
     {
-        SelectedPeriod = selectedPeriod;
-        SelectedNation = selectedNation;
+        Period = period;
+        Nation = nation;
     }
 
     public GameSettings WithPeriod(HistoricalPeriod newPeriod) =>
-        new GameSettings(newPeriod, SelectedNation!);
+        new GameSettings(newPeriod, Nation);
 
     public GameSettings WithNation(Nation newNation) =>
-        new GameSettings(SelectedPeriod!, newNation);
+        new GameSettings(Period, newNation);
 }

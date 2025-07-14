@@ -23,10 +23,10 @@ public class ChooseNationUseCase : IChooseNationUseCase
         if (current == null)
             throw new InvalidOperationException("Game settings not initialized.");
 
-        if (current.SelectedPeriod == null)
+        if (current.Period == null)
             throw new InvalidOperationException("Period not selected.");
             
-        return await _nationRepository.GetAvailableForPeriod(current.SelectedPeriod.Value);
+        return await _nationRepository.GetAvailableForPeriod(current.Period.Value);
     }
 
     public void SelectNation(Nation nation)
