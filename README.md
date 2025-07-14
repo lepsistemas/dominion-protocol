@@ -49,7 +49,7 @@ It blends classic territorial conquest gameplay with deep customization and comm
     /Repository    # Repositories (e.g., InMemoryGameSessionRepository)
     /Gateway       # External system implementations (e.g., file upload, API clients)
 /Test
-	/DominionProtocol.Tests   # NUnit + Moq unit tests
+  /DominionProtocol.Tests   # NUnit + Moq unit tests
 ```
 
 ---
