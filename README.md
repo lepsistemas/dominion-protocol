@@ -32,7 +32,7 @@ It blends classic territorial conquest gameplay with deep customization and comm
 
 ---
 
-## 🧱 Project Structure
+## 🧱 Game Code Structure
 
 ```
 /Game
@@ -48,8 +48,21 @@ It blends classic territorial conquest gameplay with deep customization and comm
   /Infrastructure
     /Repository    # Repositories (e.g., InMemoryGameSessionRepository)
     /Gateway       # External system implementations (e.g., file upload, API clients)
+```
+
+## 🧪 Test Structure
+
+- **Architecture**: assertions about code structure, like:
+  - No references from `Domain` to `Infrastructure`
+  - `UseCases` don't access `View` directly
+  - Presenters only reference allowed layers
+- **Unit**: tests for UseCases, Presenters, Services, etc. using mocks and pure logic.
+
+```
 /Test
-  /DominionProtocol.Tests   # NUnit + Moq unit tests
+  /DominionProtocol.Tests
+    /Architecture  # High-level architecture enforcement (e.g., layer boundaries, dependency rules via NetArchTest)
+    /Unit          # NUnit + Moq unit tests
 ```
 
 ---
