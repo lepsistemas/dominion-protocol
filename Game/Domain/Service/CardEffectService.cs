@@ -4,7 +4,7 @@ using System;
 
 namespace DominionProtocol.Domain.Service;
 
-public class CardEffectService
+public class CardEffectService : ICardEffectService
 {
     private readonly Dictionary<CardType, ICardEffectStrategy> _strategies;
 

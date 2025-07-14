@@ -5,7 +5,7 @@ using DominionProtocol.Domain.Model;
 
 namespace DominionProtocol.Presentation.Presenter;
 
-public interface IGameBoard
+public interface IGameBoardView
 {
     void DisplayPlayerStats(Player player);
     void DisplayOpponentSummaries(List<Player> opponents);

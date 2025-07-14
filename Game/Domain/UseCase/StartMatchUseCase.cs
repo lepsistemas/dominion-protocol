@@ -12,17 +12,15 @@ public class StartMatchUseCase : IStartMatchUseCase
 {
     private readonly INationRepository _nationRepository;
     private readonly ICardRepository _cardRepository;
+    private readonly IGameSessionRepository _sessionRepository;
     private readonly IGameSettingsRepository _settingsRepository;
     private readonly GenerateIntroService _introService;
 
-    public StartMatchUseCase(
-        INationRepository nationRepository,
-        ICardRepository cardRepository,
-        IGameSettingsRepository settingsRepository,
-        GenerateIntroService introService)
+    public StartMatchUseCase(INationRepository nationRepository, ICardRepository cardRepository, IGameSessionRepository sessionRepository, IGameSettingsRepository settingsRepository, GenerateIntroService introService)
     {
         _nationRepository = nationRepository;
         _cardRepository = cardRepository;
+        _sessionRepository = sessionRepository;
         _settingsRepository = settingsRepository;
         _introService = introService;
     }
@@ -64,6 +62,8 @@ public class StartMatchUseCase : IStartMatchUseCase
         var intro = await _introService.Generate(humanNation, aiNations);
         var game = new Game(allPlayers);
         GameSession.Current = game;
+
+        _sessionRepository.Save(game);
 
         return new StartMatchResult(
             game: game,

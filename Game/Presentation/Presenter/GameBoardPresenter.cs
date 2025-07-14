@@ -1,34 +1,27 @@
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using System.Linq;
 using DominionProtocol.Domain.Model;
-using DominionProtocol.Domain.Service;
 using DominionProtocol.Domain.UseCase;
+using DominionProtocol.Domain.Service;
 using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace DominionProtocol.Presentation.Presenter;
 
 public class GameBoardPresenter
 {
-    private readonly IGameBoard _view;
-
-    private readonly RandomDiceRollService _diceRollService;
-
-    private readonly ApplyCardEffectUseCase _applyCardEffect;
-
-    private readonly PlaySingleTurnUseCase _playTurn;
-
-    private readonly Dictionary<Player, IPlayerInput> _inputMap = [];
+    private readonly IGameBoardView _view;
+    private readonly IDiceRollService _diceService;
+    private readonly IPlayFullTurnUseCase _playFullTurnUseCase;
+    private readonly IGameSessionService _gameSession;
 
     private int _currentDiceRoll = 0;
 
-    public GameBoardPresenter(IGameBoard view)
+    public GameBoardPresenter(IGameBoardView view, IDiceRollService diceService, IPlayFullTurnUseCase playFullTurnUseCase, IGameSessionService gameSession)
     {
         _view = view;
-        _diceRollService = new RandomDiceRollService();
-        var cardEffectService = new CardEffectService();
-        _applyCardEffect = new ApplyCardEffectUseCase(cardEffectService);
-        _playTurn = new PlaySingleTurnUseCase(_applyCardEffect);
+        _diceService = diceService;
+        _playFullTurnUseCase = playFullTurnUseCase;
+        _gameSession = gameSession;
 
         _view.RollDicePressed += OnRollDicePressed;
         _view.UseCardPressed += OnUseCardPressed;
@@ -36,31 +29,19 @@ public class GameBoardPresenter
 
     public void Load()
     {
-        var game = GameSession.Current;
-        var player = game.Players.First(p => p.IsHuman);
-        var opponents = game.Players.Where(p => !p.IsHuman).ToList();
-
-        _inputMap[player] = new HumanPlayerInput(
-            chooseCard: (hand) => Task.FromResult(_view.SelectedCard!),
-            rollDice: () => Task.FromResult(_currentDiceRoll)
-        );
-
-        foreach (var cpu in opponents)
-            _inputMap[cpu] = new CpuPlayerInput();
-
+        var game = _gameSession.GetCurrent();
         _view.RefreshUI(game.Players);
-
         _view.ShowCutSceneMessage("Seu turno vai começar! Prepare-se pra rolar o dado...");
     }
 
-    public void OnRollDicePressed()
+    private void OnRollDicePressed()
     {
-        _currentDiceRoll = _diceRollService.RollDice();
+        _currentDiceRoll = _diceService.Roll(6);
         _view.ShowCutSceneMessage($"Você rolou {_currentDiceRoll}. Agora escolha uma carta.");
         _view.SetRollDiceButtonEnabled(false);
     }
 
-    public async void OnUseCardPressed()
+    private async void OnUseCardPressed()
     {
         if (_currentDiceRoll == 0)
         {
@@ -68,58 +49,52 @@ public class GameBoardPresenter
             return;
         }
 
-        if (_view.SelectedCard is not { } selected)
+        if (_view.SelectedCard is not { } selectedCard)
         {
             _view.ShowQuickMessage("Escolha uma carta antes de usar.");
             return;
         }
 
-        var player = GetHumanPlayer();
+        var game = _gameSession.GetCurrent();
+        var human = game.Players.First(p => p.IsHuman);
+
         try
         {
-            _view.ShowCutSceneMessage($"Você usou: {selected.Name}");
-            await _playTurn.Execute(GameSession.Current, player, _inputMap[player]);
-
-            _view.ClearCardSelection();
-            _view.RefreshUI(GameSession.Current.Players);
-            await Task.Delay(1000);
+            await _playFullTurnUseCase.Execute(new PlayFullTurnInput(
+                CurrentGame: game,
+                HumanPlayer: human,
+                SelectedCard: selectedCard,
+                DiceRoll: _currentDiceRoll,
+                OnUpdateUI: () =>
+                {
+                    _view.ClearCardSelection();
+                    _view.RefreshUI(game.Players);
+                    return Task.CompletedTask;
+                },
+                OnCutscene: msg =>
+                {
+                    _view.ShowCutSceneMessage(msg);
+                    return Task.CompletedTask;
+                },
+                OnQuickMessage: msg =>
+                {
+                    _view.ShowQuickMessage(msg);
+                    return Task.CompletedTask;
+                }
+            ));
 
             _currentDiceRoll = 0;
-            await PlayCpuTurns();
+            _view.SetRollDiceButtonEnabled(true);
         }
         catch (InvalidOperationException ex)
         {
             _view.ShowCutSceneMessage(ex.Message);
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             _view.ShowQuickMessage("Ocorreu um erro. Tente novamente.");
         }
     }
 
     public bool IsCardSelectionEnabled => _currentDiceRoll > 0;
-
-    private async Task PlayCpuTurns()
-    {
-        _view.ShowQuickMessage("Aguardando outros jogadores...");
-
-        foreach (var cpu in GetCpuPlayers())
-        {
-            var input = _inputMap[cpu];
-            await _playTurn.Execute(GameSession.Current, cpu, input);
-
-            _view.RefreshUI(GameSession.Current.Players);
-            await Task.Delay(1000);
-        }
-
-        _view.ShowCutSceneMessage("Seu turno começou! Role o dado.");
-        _view.SetRollDiceButtonEnabled(true);
-        Load();
-    }
-
-    private Player GetHumanPlayer() =>
-        GameSession.Current.Players.First(p => p.IsHuman);
-
-    private List<Player> GetCpuPlayers() =>
-        GameSession.Current.Players.Where(p => !p.IsHuman).ToList();
 }

@@ -18,6 +18,6 @@ public class CpuPlayerInput : IPlayerInput
 
     public Task<int> RollDice()
     {
-        return Task.FromResult(_dice.RollDice());
+        return Task.FromResult(_dice.Roll(6));
     }
 }
