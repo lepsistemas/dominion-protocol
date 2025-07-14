@@ -48,14 +48,8 @@ It blends classic territorial conquest gameplay with dynamic, AI-driven global e
 
 ## ✅ Roadmap
 
-- [ ] Project initialization in Godot with C#
-- [ ] Basic MVP architecture scaffolding
-- [ ] Implement card + country model
-- [ ] Build turn system
-- [ ] Add AI event engine (mocked)
-- [ ] Integrate real ChatGPT for dynamic scenarios
-- [ ] Export builds (Windows, Linux, macOS)
-- [ ] Open alpha with minimal gameplay loop
+- [x] Project initialization in Godot with C#
+- [x] Basic MVP architecture scaffolding
 
 ---
 
