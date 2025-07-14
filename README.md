@@ -37,17 +37,17 @@ It blends classic territorial conquest gameplay with deep customization and comm
 ```
 /Game
   /Domain
-    /Model         # Core game entities (e.g., Nation, Card, Player)
-    /UseCases      # Application logic triggered by user intent (e.g., ChooseNation, PlayTurn)
-    /Service       # Helpers used by use cases (e.g., DiceRollService, TurnExecutorService)
-    /Repository    # Repository interfaces (e.g., IGameSettingsRepository)
-    /Gateway       # Interfaces for external systems (e.g., ICardImageStorageGateway)
+	/Model         # Core game entities (e.g., Nation, Card, Player)
+	/UseCases      # Application logic triggered by user intent (e.g., ChooseNation, PlayTurn)
+	/Service       # Helpers used by use cases (e.g., DiceRollService, TurnExecutorService)
+	/Repository    # Repository interfaces (e.g., IGameSettingsRepository)
+	/Gateway       # Interfaces for external systems (e.g., ICardImageStorageGateway)
   /Presentation
-    /View          # Godot scenes and UI components (e.g., MainMenu.tscn)
-    /Presenter     # Orchestrators that connect View ↔ UseCases (1:1 with UI screens)
+	/View          # Godot scenes and UI components (e.g., MainMenu.tscn)
+	/Presenter     # Orchestrators that connect View ↔ UseCases (1:1 with UI screens)
   /Infrastructure
-    /Repository    # Repositories (e.g., InMemoryGameSessionRepository)
-    /Gateway       # External system implementations (e.g., file upload, API clients)
+	/Repository    # Repositories (e.g., InMemoryGameSessionRepository)
+	/Gateway       # External system implementations (e.g., file upload, API clients)
 ```
 
 ## 🧪 Test Structure
@@ -61,8 +61,8 @@ It blends classic territorial conquest gameplay with deep customization and comm
 ```
 /Test
   /DominionProtocol.Tests
-    /Architecture  # High-level architecture enforcement (e.g., layer boundaries, dependency rules via NetArchTest)
-    /Unit          # NUnit + Moq unit tests
+	/Architecture  # High-level architecture enforcement (e.g., layer boundaries, dependency rules via NetArchTest)
+	/Unit          # NUnit + Moq unit tests
 ```
 
 ---
