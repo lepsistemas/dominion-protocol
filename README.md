@@ -48,9 +48,8 @@ It blends classic territorial conquest gameplay with deep customization and comm
   /Infrastructure
     /Repository    # Repositories (e.g., InMemoryGameSessionRepository)
     /Gateway       # External system implementations (e.g., file upload, API clients)
-  /Tests
-    /Unit          # NUnit + Moq unit tests
-    /Integration   # Future: multiplayer, card loading, etc.
+/Test
+	/DominionProtocol.Tests   # NUnit + Moq unit tests
 ```
 
 ---
