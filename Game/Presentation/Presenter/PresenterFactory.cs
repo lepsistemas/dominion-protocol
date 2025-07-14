@@ -22,9 +22,10 @@ public static class PresenterFactory
     public static StartGameMenuPresenter CreateStartGameMenuPresenter(IStartGameMenuView view)
     {
         var gateway = new LocalIntroGateway();
+        var cardPoolService = new BalancedCardPoolService();
         var introService = new GenerateIntroService(gateway);
 
-        var useCase = new StartMatchUseCase(RepositoryLocator.Nations, RepositoryLocator.Cards, RepositoryLocator.GameSession, RepositoryLocator.GameSettings, introService);
+        var useCase = new StartMatchUseCase(RepositoryLocator.Nations, RepositoryLocator.Cards, RepositoryLocator.GameSession, RepositoryLocator.GameSettings, cardPoolService, introService);
         return new StartGameMenuPresenter(view, useCase);
     }
 

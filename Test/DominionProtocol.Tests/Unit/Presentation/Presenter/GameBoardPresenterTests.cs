@@ -1,13 +1,8 @@
-using Xunit;
 using Moq;
 using DominionProtocol.Domain.Model;
 using DominionProtocol.Domain.UseCase;
 using DominionProtocol.Domain.Service;
 using DominionProtocol.Presentation.Presenter;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Linq;
 
 namespace DominionProtocol.Tests.Presentation.Presenter;
 
@@ -28,9 +23,17 @@ public class GameBoardPresenterTests
         _playTurnUseCaseMock = new Mock<IPlayFullTurnUseCase>();
         _gameSessionMock = new Mock<IGameSessionService>();
 
-        var nation = new Nation("Nation", "desc", 10, "red", new List<HistoricalPeriod>(), new NationAttributes(1, 1, 1, 1));
+        var nation = new Nation("Nation", "desc", "Red", new List<HistoricalPeriod>(), new NationAttributes(1, 1, 1, 1));
         _humanPlayer = new Player("Human", nation, isHuman: true);
-        _testCard = new Card("Attack", "Attack description", CardType.Action);
+        _testCard = new Card(
+            name: "Attack",
+            description: "Attack description",
+            type: CardType.Action,
+            rarity: Rarity.Common,
+            target: TargetType.Enemy,
+            allowedPeriods: [HistoricalPeriod.Medieval],
+            minDieValue: 1
+        );
         _humanPlayer.AddCard(_testCard);
 
         _game = new Game(new List<Player> { _humanPlayer });

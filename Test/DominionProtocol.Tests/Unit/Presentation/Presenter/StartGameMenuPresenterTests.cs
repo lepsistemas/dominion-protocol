@@ -1,7 +1,6 @@
 using Moq;
 using DominionProtocol.Presentation.Presenter;
 using DominionProtocol.Domain.Model;
-using DominionProtocol.Domain.Service;
 using DominionProtocol.Domain.UseCase;
 
 namespace DominionProtocol.Tests.Presentation.Presenter;
@@ -18,11 +17,11 @@ public class StartGameMenuPresenterTests
         var result = new StartMatchResult(
             game: new Game(new List<Player>()),
             periodName: "Medieval",
-            playerNation: new Nation("Testland", "", 10, "Red", new List<HistoricalPeriod>(), new NationAttributes(1, 1, 1, 1)),
+            playerNation: new Nation("Testland", "desc", "Red", new List<HistoricalPeriod>(), new NationAttributes(1, 1, 1, 1)),
             opponents: new List<Nation>
             {
-                new Nation("Opponia", "", 10, "Blue", new List<HistoricalPeriod>(), new NationAttributes(1, 1, 1, 1)),
-                new Nation("Rivalia", "", 10, "Green", new List<HistoricalPeriod>(), new NationAttributes(1, 1, 1, 1))
+                new Nation("Opponia", "desc", "Blue", new List<HistoricalPeriod>(), new NationAttributes(1, 1, 1, 1)),
+                new Nation("Rivalia", "desc", "Green", new List<HistoricalPeriod>(), new NationAttributes(1, 1, 1, 1))
             },
             contextNarrative: "Intro text"
         );
