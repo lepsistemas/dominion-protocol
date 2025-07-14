@@ -61,8 +61,8 @@ It blends classic territorial conquest gameplay with deep customization and comm
 ```
 /Test
   /DominionProtocol.Tests
-	/Architecture  # High-level architecture enforcement (e.g., layer boundaries, dependency rules via NetArchTest)
-	/Unit          # NUnit + Moq unit tests
+    /Architecture  # High-level architecture enforcement (e.g., layer boundaries, dependency rules via NetArchTest)
+    /Unit          # NUnit + Moq unit tests
 ```
 
 ---
