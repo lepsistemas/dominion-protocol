@@ -52,12 +52,6 @@ It blends classic territorial conquest gameplay with deep customization and comm
 
 ## 🧪 Test Structure
 
-- **Architecture**: assertions about code structure, like:
-  - No references from `Domain` to `Infrastructure`
-  - `UseCases` don't access `View` directly
-  - Presenters only reference allowed layers
-- **Unit**: tests for UseCases, Presenters, Services, etc. using mocks and pure logic.
-
 ```
 /Test
   /DominionProtocol.Tests
