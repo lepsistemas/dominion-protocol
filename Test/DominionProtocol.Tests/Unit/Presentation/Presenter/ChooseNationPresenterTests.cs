@@ -19,7 +19,6 @@ public class ChooseNationPresenterTests
             new Nation(
                 name: "Testland",
                 description: "Test desc",
-                startingStrength: 10,
                 color: "Red",
                 availablePeriods: new List<HistoricalPeriod> { HistoricalPeriod.Medieval },
                 attributes: new NationAttributes(5, 5, 5, 5)
@@ -50,10 +49,9 @@ public class ChooseNationPresenterTests
         var nation = new Nation(
             name: "Testland",
             description: "A brave test nation.",
-            startingStrength: 10,
             color: "Red",
             availablePeriods: new List<HistoricalPeriod> { HistoricalPeriod.Medieval },
-            attributes: new NationAttributes(military: 5, technology: 3, resources: 4, diplomacy: 2)
+            attributes: new NationAttributes(5, 3, 4, 2)
         );
 
         // Act

@@ -14,14 +14,16 @@ public class StartMatchUseCase : IStartMatchUseCase
     private readonly ICardRepository _cardRepository;
     private readonly IGameSessionRepository _sessionRepository;
     private readonly IGameSettingsRepository _settingsRepository;
+    private readonly ICardPoolService _cardPoolService;
     private readonly GenerateIntroService _introService;
 
-    public StartMatchUseCase(INationRepository nationRepository, ICardRepository cardRepository, IGameSessionRepository sessionRepository, IGameSettingsRepository settingsRepository, GenerateIntroService introService)
+    public StartMatchUseCase(INationRepository nationRepository, ICardRepository cardRepository, IGameSessionRepository sessionRepository, IGameSettingsRepository settingsRepository, ICardPoolService cardPoolService, GenerateIntroService introService)
     {
         _nationRepository = nationRepository;
         _cardRepository = cardRepository;
         _sessionRepository = sessionRepository;
         _settingsRepository = settingsRepository;
+        _cardPoolService = cardPoolService;
         _introService = introService;
     }
 
@@ -54,7 +56,7 @@ public class StartMatchUseCase : IStartMatchUseCase
 
         foreach (var player in allPlayers)
         {
-            var hand = deck.OrderBy(_ => rng.Next()).Take(5).ToList();
+            var hand = _cardPoolService.GenerateStartingHand(player.Nation, deck, handSize: 5);
             foreach (var card in hand)
                 player.AddCard(card);
         }
