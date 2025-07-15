@@ -1,5 +1,78 @@
-[gd_scene format=3 uid="uid://bfig5vs1a4a4b"]
+[gd_scene load_steps=3 format=3 uid="uid://bfig5vs1a4a4b"]
 
-[node name="Login" type="Control"]
-layout_mode = 3
-anchors_preset = 0
+[ext_resource type="Texture2D" uid="uid://bxmhlm3d3l2fg" path="res://Assets/Images/Screens/Background.png" id="1_16y4g"]
+[ext_resource type="Script" uid="uid://bikaplkld6yoj" path="res://Game/Presentation/View/LoginView.cs" id="1_ap3nx"]
+
+[node name="Login" type="MarginContainer" node_paths=PackedStringArray("_usernameField", "_passwordField", "_signInButton", "_signUpButton", "_guestButton", "_quickMessageLabel")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ap3nx")
+_usernameField = NodePath("ContentWrapper/FormContainer/CenterContainer/EmailEdit")
+_passwordField = NodePath("ContentWrapper/FormContainer/CenterContainer/PasswordEdit")
+_signInButton = NodePath("ContentWrapper/FormContainer/CenterContainer/ButtonContainer/SignInButton")
+_signUpButton = NodePath("ContentWrapper/FormContainer/CenterContainer/ButtonContainer/SignUpButton")
+_guestButton = NodePath("ContentWrapper/FormContainer/CenterContainer/SkipButton")
+_quickMessageLabel = NodePath("ContentWrapper/QuickMessageLabel")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_16y4g")
+expand_mode = 3
+
+[node name="ContentWrapper" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="QuickMessageLabel" type="Label" parent="ContentWrapper"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FormContainer" type="HBoxContainer" parent="ContentWrapper"]
+layout_mode = 2
+
+[node name="BeginContainer" type="HBoxContainer" parent="ContentWrapper/FormContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CenterContainer" type="VBoxContainer" parent="ContentWrapper/FormContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TitleLabel" type="Label" parent="ContentWrapper/FormContainer/CenterContainer"]
+layout_mode = 2
+text = "Dominion Protocol"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EmailEdit" type="LineEdit" parent="ContentWrapper/FormContainer/CenterContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="PasswordEdit" type="LineEdit" parent="ContentWrapper/FormContainer/CenterContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+secret = true
+
+[node name="ButtonContainer" type="HBoxContainer" parent="ContentWrapper/FormContainer/CenterContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="SignInButton" type="Button" parent="ContentWrapper/FormContainer/CenterContainer/ButtonContainer"]
+layout_mode = 2
+text = "Sign-In"
+
+[node name="SignUpButton" type="Button" parent="ContentWrapper/FormContainer/CenterContainer/ButtonContainer"]
+layout_mode = 2
+text = "Sign-Up"
+
+[node name="SkipButton" type="Button" parent="ContentWrapper/FormContainer/CenterContainer"]
+layout_mode = 2
+text = "Play as a Guest"
+
+[node name="EndContainer" type="HBoxContainer" parent="ContentWrapper/FormContainer"]
+layout_mode = 2
+size_flags_horizontal = 3

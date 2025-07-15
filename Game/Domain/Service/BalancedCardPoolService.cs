@@ -36,6 +36,6 @@ public class BalancedCardPoolService : ICardPoolService
                 hand.Add(filler);
         }
 
-        return hand;
+        return hand.Take(handSize).ToList();
     }
 }
