@@ -2,11 +2,17 @@ using DominionProtocol.Domain.Service;
 using DominionProtocol.Infra.Gateway;
 using DominionProtocol.Infra.Repository;
 using DominionProtocol.Domain.UseCase;
+using DominionProtocol.Presentation.View;
 
 namespace DominionProtocol.Presentation.Presenter;
 
 public static class PresenterFactory
 {
+    public static LoginPresenter CreateLoginPresenter(ILoginView view)
+    {
+        return new LoginPresenter(view);
+    }
+    
     public static MainMenuPresenter CreateMainMenuPresenter(IMainMenuView view)
     {
         var useCase = new ChooseHistoricalPeriodUseCase(RepositoryLocator.GameSettings);
