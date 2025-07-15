@@ -1,6 +1,7 @@
 using DominionProtocol.Presentation.Presenter;
-using DominionProtocol.Presentation.View;
 using Godot;
+
+namespace DominionProtocol.Presentation.View;
 
 public partial class LoginView : MarginContainer, ILoginView
 {
@@ -40,7 +41,7 @@ public partial class LoginView : MarginContainer, ILoginView
 
     public void ShowError(string message)
     {
-        _quickMessageLabel.Text = message;
+        _quickMessageLabel!.Text = message;
     }
 
     public void NavigateToMainMenu()
